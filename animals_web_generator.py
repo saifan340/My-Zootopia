@@ -19,16 +19,21 @@ def generate_animals_html(output):
 output=''
 if data:
    for animal_data in data:
-       output +='<li class="cards__item">'
+       output +=f'<li class="cards__item">\n'
        if 'name' in animal_data:
-           output += f"Name: {animal_data['name']}<br/>\n"
+           name = animal_data['name'].upper()
+           output += f"<div class=\"animal-name\">{name}</div>\n"
+           #output += f"<div class=\"card_title\"> {animal_data['name']}</div>\n"
+           #output += f"<h2 class=\"card_title\"> {animal_data['name']}</h2>\n"
+       output += f'<p class="card__text">\n'
        if 'characteristics' in animal_data and 'diet' in animal_data['characteristics']:
-           output += f"Diet: {animal_data['characteristics']['diet']}<br/>\n"
+           output += f"<strong>Diet:</strong> {animal_data['characteristics']['diet']}<br/>\n"
        if 'locations' in animal_data:
            locations=animal_data["locations"]
-           output += f"Location: {locations[0]}<br/>\n"
+           output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
        if 'characteristics' in animal_data and 'type' in animal_data['characteristics']:
-           output += f"Type: {animal_data['characteristics']['type']}<br/>\n"
-       output +='</li>'
+           output += f"<strong>Type:</strong> {animal_data['characteristics']['type']}<br/>\n"
+       output += '</p>'
+       output += '</li>'
    print(output)
 generate_animals_html(output)
