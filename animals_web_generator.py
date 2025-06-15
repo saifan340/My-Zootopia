@@ -5,29 +5,28 @@ def load_data(file_path):
   with open(file_path, "r") as handle:
     return json.load(handle)
 
-animals_data = load_data('animals_data.json')
-#print(animals_data)
-for animal in animals_data:
-    import json
+data = load_data('animals_data.json')
+
+def generate_animals_html(output):
+     with open("animals_template.html", "r") as file:
+          html_content =file.read()
+     updated_html_content =html_content.replace("__REPLACE_ANIMALS_INFO__", output)
+     with open('animals_data.html', 'w') as file:
+         file.write(updated_html_content)
 
 
-    def load_data(file_path):
-        """Loads a JSON file"""
-        with open(file_path, "r") as handle:
-            return json.load(handle)
 
-
-    animals_data = load_data('animals_data.json')
-
-    for animal in animals_data:
-        if 'name' in animal:
-            print(f"Name: {animal['name']}")
-        if 'diet' in animal['characteristics']:
-            print(f"Diet: {animal['characteristics']['diet']}")
-        if 'locations' in animal:
-            for location in animal['locations']:
-                print(f"Location: {location}")
-        if 'type' in animal['characteristics']:
-            print(f"Type: {animal['characteristics']['type']}")
-        print()  # Leerzeile zwischen Einträgen
-
+output=''
+if data:
+   for animal_data in data:
+       if 'name' in animal_data:
+           output += f"Name: {animal_data['name']}\n"
+       if 'characteristics' in animal_data and 'diet' in animal_data['characteristics']:
+           output += f"Diet: {animal_data['characteristics']['diet']}\n"
+       if 'locations' in animal_data:
+           for location in animal_data['locations']:
+               output += f"Location: {location}\n"
+       if 'characteristics' in animal_data and 'type' in animal_data['characteristics']:
+           output += f"Type: {animal_data['characteristics']['type']}\n"
+   print(output)
+generate_animals_html(output)
