@@ -24,8 +24,8 @@ if data:
        if 'characteristics' in animal_data and 'diet' in animal_data['characteristics']:
            output += f"Diet: {animal_data['characteristics']['diet']}\n"
        if 'locations' in animal_data:
-           for location in animal_data['locations']:
-               output += f"Location: {location}\n"
+           locations=animal_data["locations"]
+           output += f"Location: {locations[0]}\n"
        if 'characteristics' in animal_data and 'type' in animal_data['characteristics']:
            output += f"Type: {animal_data['characteristics']['type']}\n"
    print(output)
