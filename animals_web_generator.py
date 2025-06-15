@@ -14,9 +14,35 @@ def generate_animals_html(output):
      with open('animals_data.html', 'w') as file:
          file.write(updated_html_content)
 
+def serialize_animal(animal_obj):
+    output =''
+    if data:
+           output +=f'<li class="cards__item">\n'
+           if 'name' in animal_obj:
+               name = animal_obj['name'].upper()
+               output += f"<div class=\"animal-name\">{name}</div>\n"
+           output += f'<p class="card__text">\n'
+           if 'characteristics' in animal_obj and 'diet' in animal_obj['characteristics']:
+               output += f"<strong>Diet:</strong> {animal_obj['characteristics']['diet']}<br/>\n"
+           if 'locations' in animal_obj:
+               locations=animal_obj["locations"]
+               output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
+           if 'characteristics' in animal_obj and 'type' in animal_obj['characteristics']:
+               output += f"<strong>Type:</strong> {animal_obj['characteristics']['type']}<br/>\n"
+           output += '</p>'
+           output += '</li>'
+    return output
 
+def main():
+    output=''
+    for animal_obj in data:
+        output += serialize_animal(animal_obj)
+    generate_animals_html(output)
 
-output=''
+if __name__ == '__main__':
+    main()
+
+"""output=''
 if data:
    for animal_data in data:
        output +=f'<li class="cards__item">\n'
@@ -35,5 +61,4 @@ if data:
            output += f"<strong>Type:</strong> {animal_data['characteristics']['type']}<br/>\n"
        output += '</p>'
        output += '</li>'
-   print(output)
-generate_animals_html(output)
+   print(output)"""
