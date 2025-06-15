@@ -42,23 +42,3 @@ def main():
 if __name__ == '__main__':
     main()
 
-"""output=''
-if data:
-   for animal_data in data:
-       output +=f'<li class="cards__item">\n'
-       if 'name' in animal_data:
-           name = animal_data['name'].upper()
-           output += f"<div class=\"animal-name\">{name}</div>\n"
-           #output += f"<div class=\"card_title\"> {animal_data['name']}</div>\n"
-           #output += f"<h2 class=\"card_title\"> {animal_data['name']}</h2>\n"
-       output += f'<p class="card__text">\n'
-       if 'characteristics' in animal_data and 'diet' in animal_data['characteristics']:
-           output += f"<strong>Diet:</strong> {animal_data['characteristics']['diet']}<br/>\n"
-       if 'locations' in animal_data:
-           locations=animal_data["locations"]
-           output += f"<strong>Location:</strong> {locations[0]}<br/>\n"
-       if 'characteristics' in animal_data and 'type' in animal_data['characteristics']:
-           output += f"<strong>Type:</strong> {animal_data['characteristics']['type']}<br/>\n"
-       output += '</p>'
-       output += '</li>'
-   print(output)"""
